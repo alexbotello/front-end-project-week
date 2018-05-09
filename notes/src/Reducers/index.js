@@ -1,4 +1,4 @@
-import { FETCHING, SUCCESS, ERROR, REDIRECTING, TOGGLE, QUERY } from '../Actions';
+import { FETCHING, SUCCESS, ERROR, REDIRECTING, TOGGLE, QUERY, FILTER } from '../Actions';
 const initialState = {
   notes: [],
   redirect: false,
@@ -22,6 +22,8 @@ export default (state=initialState, action) => {
       return {...state, fetching: false, error: action.error}
     case QUERY:
       return {...state, query: action.payload}
+    case FILTER:
+      return {...state, notes: state.notes.filter(note => note.title.toLowerCase().indexOf(state.query) !== -1), query: ''}
     default:
       return state;
   }

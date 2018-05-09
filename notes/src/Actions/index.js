@@ -6,8 +6,7 @@ export const REDIRECTING = 'REDIRECTING';
 export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 export const QUERY = 'QUERY';
-
-
+export const FILTER = 'FILTER';
 
 export const getNotes = () => {
   return dispatch => {
@@ -64,8 +63,8 @@ export const toggle = () => {
   }
 }
 export const updateQuery = query => {
-  return {
-    type: QUERY,
-    payload: query,
+  return dispatch => {
+    dispatch({ type: QUERY, payload: query})
+    dispatch({ type: FILTER })
   }
 }

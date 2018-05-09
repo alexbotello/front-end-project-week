@@ -8,7 +8,9 @@ class SearchBar extends Component {
   }
   handleChange = event => {
     this.setState({ [event.target.name]: event.target.value });
-    this.props.retrieve(this.state.query.toLowerCase());
+    // this.props.retrieve(this.state.query.toLowerCase());
+    this.props.updateQuery(this.state.query.toLowerCase());
+    // this.setState({ query: this.props.query });
   }
   render() {
     return (
@@ -22,4 +24,9 @@ class SearchBar extends Component {
     );
   }
 }
-export default connect(null, {updateQuery})(SearchBar);
+const mapStateToProps = state => {
+  return {
+    query: state.query,
+  }
+}
+export default connect(mapStateToProps, {updateQuery})(SearchBar);
