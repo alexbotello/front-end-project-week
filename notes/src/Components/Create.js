@@ -1,26 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
+// import axios from 'axios';
 
+import { addNote } from '../Actions';
 import Form from './Form';
 
-export default class Create extends Component {
-  state = {
-    redirect: false
-  } 
-  addNewNote = note => {
-    axios.post("http://localhost:5005/notes", note)
-      .then(() => this.setState({ redirect: true }))
-      .catch(error => console.log(error));
-  }
+class Create extends Component {
   render() {
     let items = {
       button: 'Add Note',
-      action: this.addNewNote,
+      action: this.props.addNote,
     }
     return(
       <div className="flex-container">
-        {this.state.redirect 
+        {this.props.redirect 
           ? <Redirect to="/" />
           : <div className="flex-container">
               <div className="title">
@@ -33,4 +27,10 @@ export default class Create extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    redirect: state.redirect
+  }
+}
 
+export default connect(mapStateToProps, {addNote})(Create);

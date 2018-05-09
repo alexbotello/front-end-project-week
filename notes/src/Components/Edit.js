@@ -1,27 +1,20 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import axios from 'axios';
 
+import { updateNote } from '../Actions';
 import Form from './Form';
 
-export default class Edit extends Component {
-  state = {
-    redirect: false,
-  }
-  updateNote = note => {
-    axios.put(`http://localhost:5005/note/${note.id}`, note)
-     .then(() => this.setState({ redirect: true }))
-     .catch(error => console.log(error))
-  }
+class Edit extends Component {
   render() {
     let items = {
       button: 'Update Note',
-      action: this.updateNote,
+      action: this.props.updateNote,
       note: this.props.location.state,
     }
     return (
       <div className="flex-container">
-        {this.state.redirect 
+        {this.props.redirect 
           ? <Redirect to='/'/>
           : <div className="flex-container">
               <div className="title">
@@ -34,3 +27,9 @@ export default class Edit extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    redirect: state.redirect,
+  }
+}
+export default connect(mapStateToProps, {updateNote})(Edit);

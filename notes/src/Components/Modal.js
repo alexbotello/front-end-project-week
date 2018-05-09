@@ -1,27 +1,29 @@
 import React from 'react';
+import { connect } from 'react-redux';
+
+import { toggle, deleteNote } from '../Actions';
 import Button from './Button';
 
-export default props => {
-  const noProps = {
+const Modal = props => {
+  const items = {
     styles: {'backgroundColor': 'red'},
     text: 'No',
     clickButton: props.toggle,
-  }
-  const yesProps = {
-    text: 'Yes',
-    clickButton: props.delete,
   }
   return(
     <div className="modal">
       <p>Are you sure you want to delete this?</p>
       <div className="modal-container">
         <div className="modal-button">
-          <Button {...noProps}/>
+          <Button {...items}/>
         </div>
         <div className="modal-button">
-          <Button {...yesProps}/>
+          <button className="button" onClick={() => props.deleteNote(props.note)}>
+            Yes
+          </button>
         </div>
       </div>
     </div>
   )
 }
+export default connect(null, { toggle, deleteNote })(Modal);

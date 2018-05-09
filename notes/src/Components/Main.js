@@ -1,31 +1,26 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
+import { getNotes } from '../Actions';
 import SearchBar from './SearchBar';
-import ExportCSV from './ExportCSV';
+import Export from './Export';
 import Card from './Card';
 
 
-export default class Main extends Component {
+class Main extends Component {
   state = {
-    notes: [],
     query: '',
   }
   componentDidMount() {
-      axios.get('http://localhost:5005/notes')
-      .then(response => {
-        this.setState({ notes: response.data })
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.props.getNotes();
   }
   retrieveQuery = query => {
     this.setState({ query });
   }
   render() {
-    let { notes, query } = this.state;
+    let { query } = this.state;
+    let { notes } = this.props;
     notes = notes.filter(note => {
       return note.title.toLowerCase().indexOf(query) > -1;
     });
@@ -34,7 +29,7 @@ export default class Main extends Component {
         <div className="title">
           <h2>Your Notes:</h2>
           <SearchBar retrieve={this.retrieveQuery}/>
-          <ExportCSV notes={notes} />
+          <Export/>
         </div>
         <ul className="notes-list">
           {notes.map((note, i) => {
@@ -49,3 +44,9 @@ export default class Main extends Component {
     );
   }
 }
+const mapStateToProps = state => {
+  return {
+    notes: state.notes,
+  }
+}
+export default connect(mapStateToProps, {getNotes})(Main);

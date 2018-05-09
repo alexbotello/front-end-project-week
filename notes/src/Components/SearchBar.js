@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { updateQuery } from '../Actions';
 
-export default class SearchBar extends Component {
+class SearchBar extends Component {
   state = {
     query: '',
   }
@@ -20,3 +22,4 @@ export default class SearchBar extends Component {
     );
   }
 }
+export default connect(null, {updateQuery})(SearchBar);
