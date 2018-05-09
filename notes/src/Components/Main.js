@@ -9,26 +9,16 @@ import Card from './Card';
 
 
 class Main extends Component {
-  state = {
-    query: '',
-  }
   componentDidMount() {
     this.props.getNotes();
   }
-  retrieveQuery = query => {
-    this.setState({ query });
-  }
   render() {
-    let { query } = this.state;
     let { notes } = this.props;
-    notes = notes.filter(note => {
-      return note.title.toLowerCase().indexOf(query) > -1;
-    });
     return (
       <div className="flex-container">
         <div className="title">
           <h2>Your Notes:</h2>
-          <SearchBar retrieve={this.retrieveQuery}/>
+          <SearchBar />
           <Export/>
         </div>
         <ul className="notes-list">

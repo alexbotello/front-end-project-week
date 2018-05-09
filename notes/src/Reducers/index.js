@@ -23,7 +23,7 @@ export default (state=initialState, action) => {
     case QUERY:
       return {...state, query: action.payload}
     case FILTER:
-      return {...state, notes: state.notes.filter(note => note.title.toLowerCase().indexOf(state.query) !== -1), query: ''}
+      return {...state, notes: state.notes.filter(note => note.title.toLowerCase().indexOf(state.query) != -1)}
     default:
       return state;
   }
