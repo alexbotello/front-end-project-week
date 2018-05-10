@@ -7,6 +7,7 @@ export const SUCCESS = 'SUCCESS';
 export const ERROR = 'ERROR';
 export const QUERY = 'QUERY';
 export const FILTER = 'FILTER';
+export const SORT = 'SORT';
 
 export const getNotes = () => {
   return dispatch => {
@@ -66,5 +67,10 @@ export const updateQuery = query => {
   return dispatch => {
     dispatch({ type: QUERY, payload: query})
     dispatch({ type: FILTER })
+  }
+}
+export const sortBySelect = select => {
+  return dispatch => {
+    dispatch({ type: SORT, payload: select });
   }
 }

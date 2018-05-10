@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getNotes } from '../Actions';
-import SearchBar from './SearchBar';
+import Select from './Select';
+import Search from './Search';
 import Export from './Export';
 import Card from './Card';
 
@@ -13,12 +14,13 @@ class Main extends Component {
     this.props.getNotes();
   }
   render() {
-    let { notes } = this.props;
+    const { notes } = this.props;
     return (
       <div className="flex-container">
         <div className="title">
           <h2>Your Notes:</h2>
-          <SearchBar />
+          <Select/>
+          <Search/>
           <Export/>
         </div>
         <ul className="notes-list">

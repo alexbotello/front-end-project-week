@@ -35,6 +35,13 @@ body {
   border: none;
 }
 
+.select {
+  position: absolute;
+  bottom: 63px;
+  left: 44%;
+  width: 21.5%;
+}
+
 .export-csv {
   position: relative;
   bottom: 64px;

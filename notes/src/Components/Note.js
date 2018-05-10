@@ -20,11 +20,11 @@ class Note extends Component {
   }
   render() {
     const { note, id } = this.state;
-    const { toggleModal } = this.props;
+    const { toggleModal, redirect } = this.props;
     note.id = id;
     return (
       <div className="flex-container">
-        {this.props.redirect 
+        {redirect 
           ? <Redirect to='/'/>
           : <div className="flex-container"> 
               {toggleModal ? <Modal note={note}/> : null}

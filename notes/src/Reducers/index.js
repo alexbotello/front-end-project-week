@@ -1,10 +1,11 @@
-import { FETCHING, SUCCESS, ERROR, REDIRECTING, TOGGLE, QUERY, FILTER } from '../Actions';
+import { FETCHING, SUCCESS, ERROR, REDIRECTING, TOGGLE, QUERY, FILTER, SORT } from '../Actions';
 const initialState = {
   notes: [],
   redirect: false,
   fetching: false,
   toggle: false,
   query: '',
+  select: '',
   error: null,
 }
 
@@ -23,8 +24,16 @@ export default (state=initialState, action) => {
     case QUERY:
       return {...state, query: action.payload}
     case FILTER:
-      return {...state, notes: state.notes.filter(note => note.title.toLowerCase().indexOf(state.query) != -1)}
+      return {...state, notes: state.notes.filter(note => note.title.toLowerCase().indexOf(state.query) !== -1)}
+    case SORT:
+      return {...state, select: action.payload, notes: state.notes.sort(compare)}
     default:
       return state;
   }
+}
+
+const compare = (a, b) => {
+  if (a < b) return -1;
+  else if (a > b) return 1;
+  return 0;
 }

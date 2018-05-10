@@ -2,12 +2,17 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { updateQuery } from '../Actions';
 
-class SearchBar extends Component {
+class Search extends Component {
   state = {
     query: '',
   }
   handleChange = event => {
-    this.setState({ [event.target.name]: event.target.value }, this.props.updateQuery(event.target.value));
+    event.persist();
+    this.setState(prevState => {
+      prevState.query = event.target.value;
+      this.props.updateQuery(prevState.query.toLowerCase());
+      return prevState;
+    });
   }
   render() {
     return (
@@ -26,4 +31,4 @@ const mapStateToProps = state => {
     query: state.query,
   }
 }
-export default connect(mapStateToProps, {updateQuery})(SearchBar);
+export default connect(mapStateToProps, {updateQuery})(Search);
