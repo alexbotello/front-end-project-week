@@ -9,7 +9,6 @@ class Select extends Component {
   }
   handleChange = event => {
     event.persist();
-    // this.setState({value: event.target.value});
     this.setState(prevState => {
       prevState.value = event.target.value;
       this.props.sortBySelect(prevState.value);

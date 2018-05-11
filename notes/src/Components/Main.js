@@ -3,9 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { getNotes } from '../Actions';
-import Select from './Select';
-import Search from './Search';
-import Export from './Export';
+import Nav from './Nav';
 import Card from './Card';
 
 
@@ -19,9 +17,7 @@ class Main extends Component {
       <div className="flex-container">
         <div className="title">
           <h2>Your Notes:</h2>
-          <Select/>
-          <Search/>
-          <Export/>
+          <Nav />
         </div>
         <ul className="notes-list">
           {notes.map((note, i) => {

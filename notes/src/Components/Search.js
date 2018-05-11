@@ -21,14 +21,9 @@ class Search extends Component {
           name="query"
           placeholder="Search for note.."
           onChange={this.handleChange}
-          value={this.state.query}/>
+          value={this.props.query}/>
       </div>
     );
   }
 }
-const mapStateToProps = state => {
-  return {
-    query: state.query,
-  }
-}
-export default connect(mapStateToProps, {updateQuery})(Search);
+export default connect(null, { updateQuery })(Search);

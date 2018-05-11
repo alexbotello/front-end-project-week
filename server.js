@@ -41,27 +41,27 @@ let notes = [
     },
     {
 		id: 4,
-		title: '## React tips',
+		title: '## Singularity',
         content: dummyText,
     },
     {
 		id: 5,
-		title: '## Redux sucks',
+		title: '## Clarity',
         content: dummyText,
     },
     {
 		id: 6,
-		title: '## The perfect grilled cheese',
+		title: '## Yup Yup',
         content: dummyText,
     },
     {
 		id: 7,
-		title: '## yadda yadda',
+		title: '## Musica musica',
         content: dummyText,
     },
     {
 		id: 8,
-		title: '## Code everyday',
+		title: '## Code Everyday',
         content: dummyText,
     },
 ];
