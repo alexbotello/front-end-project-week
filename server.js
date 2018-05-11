@@ -98,6 +98,13 @@ app.delete('/note/:id', (req, res) => {
   if (foundNote) {
 	const noteRemoved = {...foundNote}
 	notes = notes.filter(note => note.id != id);
+	notes = notes.map(note => {
+	  if (note.id > id) {
+		note.id = note.id - 1;
+	  }
+	  return note;
+	});
+	noteId = notes.length;
 	res.status(200).json(notes);
   }
 });

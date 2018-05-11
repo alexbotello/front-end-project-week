@@ -19,7 +19,7 @@ class Note extends Component {
       .catch(error => console.log(error));
   }
   render() {
-    const { note, id } = this.state;
+    let { note, id } = this.state;
     const { toggleModal, redirect } = this.props;
     note.id = id;
     return (
