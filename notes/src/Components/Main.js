@@ -22,12 +22,12 @@ class Main extends Component {
         <ul className="notes-list">
           {notes.map((note, i) => {
             return(
-              <Link key={i} to={`note/${note.id}`} className="note-card">
+              <Link key={i} to={`note/${note._id}`} className="note-card">
                 <Card note={note} />
               </Link>
             );
           })}
-        </ul>  
+        </ul>
       </div>
     );
   }

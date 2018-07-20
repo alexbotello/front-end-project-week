@@ -14,7 +14,7 @@ class Edit extends Component {
     }
     return (
       <div className="flex-container">
-        {this.props.redirect 
+        {this.props.redirect
           ? <Redirect to='/'/>
           : <div className="flex-container">
               <div className="title">

@@ -1,4 +1,4 @@
-import { FETCHING, SUCCESS, ERROR, REDIRECTING, TOGGLE, QUERY, FILTER, SORT } from '../Actions';
+import { FETCHING, SUCCESS, ERROR, REDIRECTING, TOGGLE, QUERY, FILTER, SORT, ADDED } from '../Actions';
 const initialState = {
   notes: [],
   redirect: false,
@@ -19,6 +19,8 @@ export default (state=initialState, action) => {
       return {...state, redirect: true}
     case SUCCESS:
       return {...state, fetching: false, notes: action.notes}
+    case ADDED:
+      return {...state, fetching: false }
     case ERROR:
       return {...state, fetching: false, error: action.error}
     case QUERY:

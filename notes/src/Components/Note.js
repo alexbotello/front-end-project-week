@@ -14,7 +14,7 @@ class Note extends Component {
   }
   componentDidMount() {
     const id = this.props.match.params.id;
-    axios.get(`http://localhost:5005/note/${id}`)
+    axios.get(`https://lambda-notes-alex.herokuapp.com/api/notes/${id}`)
       .then(response => this.setState({ note: response.data, id}))
       .catch(error => console.log(error));
   }
@@ -24,9 +24,9 @@ class Note extends Component {
     note.id = id;
     return (
       <div className="flex-container">
-        {redirect 
+        {redirect
           ? <Redirect to='/'/>
-          : <div className="flex-container"> 
+          : <div className="flex-container">
               {toggleModal ? <Modal note={note}/> : null}
               <div className="title">
                 <ReactMarkdown source={note.title} />

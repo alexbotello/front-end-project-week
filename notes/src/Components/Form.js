@@ -16,8 +16,8 @@ export default class Form extends Component {
   componentDidMount() {
     const { note } = this.props;
     if (note) {
-      this.setState({ title: note.title, content: note.content, id: note.id })
-    } 
+      this.setState({ title: note.title, content: note.content, id: note._id })
+    }
   }
   render() {
     let props = {
@@ -26,7 +26,7 @@ export default class Form extends Component {
     }
     return(
       <div className="form-block">
-        <input 
+        <input
           name="title"
           className="form-title"
           value={this.state.title}
